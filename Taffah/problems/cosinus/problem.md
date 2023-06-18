@@ -1,2 +1,0 @@
-- Problem
-  ![Problem](/problem.jpg)
