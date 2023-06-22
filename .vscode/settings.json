@@ -53,5 +53,10 @@
   "C_Cpp_Runner.useAddressSanitizer": false,
   "C_Cpp_Runner.useUndefinedSanitizer": false,
   "C_Cpp_Runner.useLeakSanitizer": false,
-  "C_Cpp_Runner.showCompilationTime": false
+  "C_Cpp_Runner.showCompilationTime": false,
+  "liveServer.settings.port": 5501,
+  "files.associations": {
+    "*.embeddedhtml": "html",
+    "stdio.h": "c"
+  }
 }
