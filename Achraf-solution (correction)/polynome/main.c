@@ -1,7 +1,7 @@
 #include "solution.c"
 
 int main() {
-    struct Node *head1,*head2,*sum;
+    struct Node *head1,*head2,*sum,*power;
     head1=create_Polynome();
     head2=create_Polynome();
 
@@ -27,7 +27,7 @@ int main() {
     
     
     printf("display poly 1. \n");
-    display_Polynome(head2);
+    display_Polynome(head1);
 
     printf("display poly 2. \n");
     display_Polynome(head2);
@@ -36,6 +36,13 @@ int main() {
 
     printf("display the sum of poly1 and poly2. \n");
     display_Polynome(sum);
+
+    power=calculate_Multiplication_Of_TwoPolynome(head1,head2);
+
+    printf("display the power of poly1 and poly2. \n");
+    display_Polynome(power);
+
+    
 
     return 0;
 }
