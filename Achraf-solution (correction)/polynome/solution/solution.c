@@ -58,36 +58,69 @@ void display_Polynome(struct Node *head){
     printf("\n");
 }
 
-struct Node *calculate_Sum_Of_Two_Polynome(struct Node *head1, struct Node *head2) {
+struct Node *calculate_Multiplication_Of_TwoPolynome(struct Node *head1, struct Node *head2) {
     struct Node *temp1, *temp2, *result = create_Polynome();
     temp1 = head1;
     temp2 = head2;
 
-    while (temp1) {
-        double c=temp1->monome.coefficient + temp2->monome.coefficient;
-        double p=temp1->monome.puissance;
-        result = add_Monome_To_Polynome(create_Monome(c,p), result);
-        temp1 = temp1->next;
-        temp2 = temp2->next;
+    while (temp1 || temp2) {
+        if(temp1 && temp2){
+            double c=temp1->monome.coefficient * temp2->monome.coefficient;
+            double p=temp1->monome.puissance + temp2->monome.puissance;
+            result = add_Monome_To_Polynome(create_Monome(c,p), result);
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+        }
+        if(temp1 && !temp2){
+            double c=temp1->monome.coefficient;
+            double p=temp1->monome.puissance;
+            result = add_Monome_To_Polynome(create_Monome(c,p), result);
+            temp1 = temp1->next;
+        }
+        if(!temp1 && temp2){
+            double c=temp2->monome.coefficient;
+            double p=temp2->monome.puissance;
+            result = add_Monome_To_Polynome(create_Monome(c,p), result);
+            temp2 = temp2->next;
+        }
+        if(!temp1 && !temp2){
+            break;
+        }
     }
     return result;
 }
 
 
-struct Node *calculate_Multiplication_Of_TwoPolynome(struct Node *head1,struct Node *head2){
-    struct Node *temp1, *temp2, *result = create_Polynome();
-    temp1 = head1;
-    temp2 = head2;
-
-    while (temp1) {
-        double c=temp1->monome.coefficient * temp2->monome.coefficient;
-        double p=temp1->monome.puissance+temp1->monome.puissance;
-        result = add_Monome_To_Polynome(create_Monome(c,p), result);
-        temp1 = temp1->next;
-        temp2 = temp2->next;
+struct Node* calculate_Sum_Of_Two_Polynome(struct Node* head1, struct Node* head2) {
+    struct Node* temp1 = head1;
+    struct Node* temp2 = head2;
+    struct Node* result = create_Polynome();
+    
+    while (temp1 && temp2) {
+        if (temp1->monome.puissance == temp2->monome.puissance) {
+            double c = temp1->monome.coefficient + temp2->monome.coefficient;
+            double p = temp1->monome.puissance;
+            result = add_Monome_To_Polynome(create_Monome(c, p), result);
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+        }
+        else if (temp1->monome.puissance > temp2->monome.puissance) {
+            double c = temp1->monome.coefficient;
+            double p = temp1->monome.puissance;
+            result = add_Monome_To_Polynome(create_Monome(c, p), result);
+            temp1 = temp1->next;
+        }
+        else {
+            double c = temp2->monome.coefficient;
+            double p = temp2->monome.puissance;
+            result = add_Monome_To_Polynome(create_Monome(c, p), result);
+            temp2 = temp2->next;
+        }
     }
+        
     return result;
 }
+
 
 void solve_Polynome(struct Node *head) {
     struct Node *temp;
