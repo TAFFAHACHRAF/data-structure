@@ -58,6 +58,8 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "stdio.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "math.h": "c",
+    "assert.h": "c"
   }
 }

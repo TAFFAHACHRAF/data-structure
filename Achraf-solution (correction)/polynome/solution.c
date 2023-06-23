@@ -88,4 +88,32 @@ struct Node *calculate_Multiplication_Of_TwoPolynome(struct Node *head1,struct N
     }
     return result;
 }
-void solve_Polynome(struct Node *head);
+
+void solve_Polynome(struct Node *head) {
+    struct Node *temp;
+    temp = head;
+    if (temp->monome.puissance > 2) {
+        printf("This is not a second-degree polynomial.\n");
+    }
+    else{
+        // delta = b * b - 4 * a * c
+        double a = temp->monome.coefficient;
+        double b = temp->next->monome.coefficient;
+        double c = temp->next->next->monome.coefficient;
+        double delta = pow(b, 2) - 4 * a * c;
+
+        if (delta < 0) {
+            printf("This equation has no solution in R.\n");
+        }
+        else if (delta == 0) {
+            double s = -b / (2 * a);
+            printf("This equation has a double root in R: s = %lf\n", s);
+        }
+        else {
+            double s1 = (-b - sqrt(delta)) / (2 * a);
+            double s2 = (-b + sqrt(delta)) / (2 * a);
+
+            printf("This equation has these solutions in R: s1 = %lf, s2 = %lf\n", s1, s2);
+        }
+    }
+}
