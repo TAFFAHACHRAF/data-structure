@@ -19,6 +19,7 @@ struct Node *create_Polynome(){
     newPolynome->monome=monome;
     newPolynome->next=NULL;
     newPolynome->prev=NULL;
+    return newPolynome;
 }
 
 struct Node *add_Monome_To_Polynome(struct Monome monome, struct Node *head) {
