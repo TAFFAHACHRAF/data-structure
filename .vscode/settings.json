@@ -57,6 +57,7 @@
   "liveServer.settings.port": 5501,
   "files.associations": {
     "*.embeddedhtml": "html",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "stdlib.h": "c"
   }
 }
