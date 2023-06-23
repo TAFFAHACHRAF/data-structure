@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdlib.h>
 //1)
 struct Monome{
 	int coeff;
@@ -76,12 +76,13 @@ struct PolyNode* produitPolynome(struct PolyNode* poly1Head, struct PolyNode* po
                 }  
                 poly2 = poly2->next;
             }
-        }
-        poly1 = poly1->next;
+	 poly1 = poly1->next;
         poly2 = poly2Head;
+        }
+      
+	return resultHead;
     }
-    return resultHead;
-}
+    
 
 //5
 void solutionPolynome(struct PolyNode* polyHead) {
