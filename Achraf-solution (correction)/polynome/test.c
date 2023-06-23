@@ -1,4 +1,4 @@
-#include "solution.c"
+#include "solution/solution.c"
 
 int main() {
     struct Node *head1,*head2,*sum,*power;
