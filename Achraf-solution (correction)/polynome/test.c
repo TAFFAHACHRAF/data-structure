@@ -40,7 +40,7 @@ int main() {
 
     power=calculate_Multiplication_Of_TwoPolynome(head1,head2);
 
-    printf("display the power of poly1 and poly2. \n");
+    printf("display the multiplication of poly1 and poly2. \n");
     display_Polynome(power);
 
 

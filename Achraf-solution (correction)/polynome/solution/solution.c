@@ -44,15 +44,14 @@ struct Node *add_Monome_To_Polynome(struct Monome monome, struct Node *head) {
     }
 }
 
-
 void display_Polynome(struct Node *head){
     struct Node *temp;
     temp=head;
     while(temp != NULL){
-        printf("%lf(x^%lf)",temp->monome.coefficient,temp->monome.puissance);
+        printf("%lfX^%lf",temp->monome.coefficient,temp->monome.puissance);
         temp=temp->next;
 
-        if(temp)
+        if(temp && temp->monome.coefficient>=0)
             printf("+");
     }
     printf("\n");
@@ -63,33 +62,24 @@ struct Node *calculate_Multiplication_Of_TwoPolynome(struct Node *head1, struct 
     temp1 = head1;
     temp2 = head2;
 
-    while (temp1 || temp2) {
-        if(temp1 && temp2){
-            double c=temp1->monome.coefficient * temp2->monome.coefficient;
-            double p=temp1->monome.puissance + temp2->monome.puissance;
-            result = add_Monome_To_Polynome(create_Monome(c,p), result);
-            temp1 = temp1->next;
+    // Iterate over each term of the first polynomial
+    while (temp1 != NULL) {
+        while (temp2 != NULL) {
+            // Multiply the coefficients and add the powers
+            struct Monome multipliedMonome = create_Monome(temp1->monome.coefficient * temp2->monome.coefficient,
+                                                           temp1->monome.puissance + temp2->monome.puissance);
+            // Add the multiplied term to the result polynomial
+            result = add_Monome_To_Polynome(multipliedMonome, result);
+
             temp2 = temp2->next;
         }
-        if(temp1 && !temp2){
-            double c=temp1->monome.coefficient;
-            double p=temp1->monome.puissance;
-            result = add_Monome_To_Polynome(create_Monome(c,p), result);
-            temp1 = temp1->next;
-        }
-        if(!temp1 && temp2){
-            double c=temp2->monome.coefficient;
-            double p=temp2->monome.puissance;
-            result = add_Monome_To_Polynome(create_Monome(c,p), result);
-            temp2 = temp2->next;
-        }
-        if(!temp1 && !temp2){
-            break;
-        }
+
+        temp2 = head2;  // Reset temp2 to the beginning of the second polynomial
+        temp1 = temp1->next;
     }
+
     return result;
 }
-
 
 struct Node* calculate_Sum_Of_Two_Polynome(struct Node* head1, struct Node* head2) {
     struct Node* temp1 = head1;
@@ -120,7 +110,6 @@ struct Node* calculate_Sum_Of_Two_Polynome(struct Node* head1, struct Node* head
         
     return result;
 }
-
 
 void solve_Polynome(struct Node *head) {
     struct Node *temp;
